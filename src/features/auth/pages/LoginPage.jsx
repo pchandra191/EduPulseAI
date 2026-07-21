@@ -12,7 +12,8 @@ const LoginPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setError("");
+    console.log("Submit clicked");
+    setError("Error");
 
     if (!email || !password) {
       setError("Please enter both email and password.");
