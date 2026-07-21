@@ -1,52 +1,33 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import PublicRoute from "./PublicRoute";
-import ProtectedRoute from "./ProtectedRoute";
-import { ROUTES } from "./routeConstants";
+import LoginPage from "@/features/auth/pages/LoginPage";
+import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 
-const LoginPage = lazy(() => import("@/features/auth/pages/LoginPage"));
-const DashboardPage = lazy(() => import("@/features/dashboard/pages/DashboardPage"));
-const UnauthorizedPage = lazy(() => import("@/features/auth/pages/UnauthorizedPage"));
-const NotFoundPage = lazy(() => import("@/features/common/pages/NotFoundPage"));
-const LoadingPage = lazy(() => import("@/features/common/pages/LoadingPage"));
+import DashboardLayout from "@/shared/layouts/DashboardLayout";
+import ProtectedRoute from "@/routes/ProtectedRoute";
 
 function AppRouter() {
-  return (
-    <BrowserRouter>
-      <Suspense fallback={<LoadingPage />}>
-        <Routes>
-          <Route
-            path={ROUTES.LOGIN}
-            element={
-              <PublicRoute>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path="/"
+                    element={<Navigate to="/login" replace />}
+                />
 
-          <Route
-            path={ROUTES.DASHBOARD}
-            element={
-              <ProtectedRoute>
-                <DashboardPage />
-              </ProtectedRoute>
-            }
-          />
+                <Route path="/login" element={<LoginPage />} />
 
-          <Route
-            path={ROUTES.UNAUTHORIZED}
-            element={<UnauthorizedPage />}
-          />
-
-          <Route
-            path="*"
-            element={<NotFoundPage />}
-          />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
-  );
+                <Route element={<ProtectedRoute />}>
+                    <Route element={<DashboardLayout />}>
+                        <Route
+                            path="/dashboard"
+                            element={<DashboardPage />}
+                        />
+                    </Route>
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default AppRouter;

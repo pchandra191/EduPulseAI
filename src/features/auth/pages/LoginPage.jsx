@@ -21,18 +21,16 @@ const LoginPage = () => {
     }
 
     // TODO: Replace with real authentication logic
-    if (
-      email.trim() === "sonivanshu012@gmail.com" &&
-      password === "hail@Trufi1"
-    ) {
+    if (email === "sonivanshu012@gmail.com" && password === "hail@Trufi1") {
       dispatch(
         loginSuccess({
           token: "dummy-token",
-          refreshToken: "dummy-refresh",
+          refreshToken: "dummy-refresh-token",
           user: {
+            id: 1,
+            name: "Prabhat",
             email,
             role: "SUPER_ADMIN",
-            name: "Prabhat",
           },
         }),
       );
