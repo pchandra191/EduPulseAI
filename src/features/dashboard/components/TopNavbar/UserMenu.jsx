@@ -13,6 +13,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { useAuth } from "@/features/auth/hooks/useAuth";
+
 
 const UserMenu = ({
   user = {
@@ -22,6 +24,8 @@ const UserMenu = ({
   },
   onLogout = () => {},
 }) => {
+  const { signOut } = useAuth();
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const open = Boolean(anchorEl);
@@ -78,7 +82,7 @@ const UserMenu = ({
         <MenuItem
           onClick={() => {
             handleClose();
-            onLogout();
+            signOut();
           }}
         >
           <ListItemIcon>

@@ -9,6 +9,7 @@ import { PERMISSIONS } from "./permissions";
 // rolePermissions.js
 // contains which role gets which permissions.
 export const ROLE_PERMISSIONS = {
+    
     [ROLES.SUPER_ADMIN]: ["*"],
 
     [ROLES.INSTITUTE]: [

@@ -4,6 +4,11 @@ import { useSelector } from "react-redux";
 import { ROLE_PERMISSIONS } from "../permissions/rolePermissions";
 
 export const usePermission = () => {
+  console.log("ROLE_PERMISSIONS:", ROLE_PERMISSIONS);
+console.log(
+    "SUPER_ADMIN permissions:",
+    ROLE_PERMISSIONS["ROLE_SUPER_ADMIN"]
+);
   const user = useSelector((state) => state.auth.user);
   console.log("User:", user);
 
