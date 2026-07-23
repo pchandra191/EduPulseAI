@@ -1,17 +1,21 @@
-import AppThemeProvider from "./AppThemeProvider";
-import AppReduxProvider from "./AppReduxProvider";
-import AppQueryProvider from "./AppQueryProvider";
+import { Provider } from "react-redux";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-function AppProviders({ children }) {
+import { store } from "@/store";
+import AuthInitializer from "@/features/auth/components/AuthInitializer";
+
+const queryClient = new QueryClient();
+
+const AppProviders = ({ children }) => {
     return (
-        <AppReduxProvider>
-            <AppQueryProvider>
-                <AppThemeProvider>
+        <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                <AuthInitializer>
                     {children}
-                </AppThemeProvider>
-            </AppQueryProvider>
-        </AppReduxProvider>
+                </AuthInitializer>
+            </QueryClientProvider>
+        </Provider>
     );
-}
+};
 
 export default AppProviders;
