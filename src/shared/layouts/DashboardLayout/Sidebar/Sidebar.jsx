@@ -1,34 +1,53 @@
-import { Drawer, List } from "@mui/material";
+import { Drawer, Box } from "@mui/material";
 
-import SidebarHeader from "./SidebarHeader";
-import SidebarItem from "./SidebarItem";
-import { menuItems } from "./menuConfig";
+import SidebarContent from "./SidebarContent";
 
-function Sidebar() {
-    return (
-        <Drawer
-            variant="permanent"
-            sx={{
-                width: 260,
-                flexShrink: 0,
-                "& .MuiDrawer-paper": {
-                    width: 260,
-                    boxSizing: "border-box",
-                },
-            }}
-        >
-            <SidebarHeader />
+const DRAWER_WIDTH = 260;
 
-            <List>
-                {menuItems.map((item) => (
-                    <SidebarItem
-                        key={item.id}
-                        {...item}
-                    />
-                ))}
-            </List>
-        </Drawer>
-    );
+function Sidebar({ mobileOpen, onClose }) {
+  return (
+    <Box component="nav" sx={{ width: { md: DRAWER_WIDTH }, flexShrink: { md: 0 } }}>
+      {/* Mobile Drawer */}
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={onClose}
+        ModalProps={{
+          keepMounted: true,
+        }}
+        sx={{
+          display: {
+            xs: "block",
+            md: "none",
+          },
+          "& .MuiDrawer-paper": {
+            width: DRAWER_WIDTH,
+            boxSizing: "border-box",
+          },
+        }}
+      >
+        <SidebarContent onItemClick={onClose} />
+      </Drawer>
+
+      {/* Desktop Drawer */}
+      <Drawer
+        variant="permanent"
+        open
+        sx={{
+          display: {
+            xs: "none",
+            md: "block",
+          },
+          "& .MuiDrawer-paper": {
+            width: DRAWER_WIDTH,
+            boxSizing: "border-box",
+          },
+        }}
+      >
+        <SidebarContent />
+      </Drawer>
+    </Box>
+  );
 }
 
 export default Sidebar;
