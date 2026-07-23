@@ -28,9 +28,10 @@ const LoginPage = () => {
           refreshToken: "dummy-refresh-token",
           user: {
             id: 1,
-            name: "Prabhat",
             email,
-            role: "SUPER_ADMIN",
+            firstName: "Prabhat",
+            lastName: "Chandra",
+            roles: ["ROLE_STUDENT"],
           },
         }),
       );

@@ -1,5 +1,8 @@
 import Grid from "@mui/material/Grid";
 
+import { usePermission } from "@/features/auth/hooks/usePermission";
+import { PERMISSIONS } from "@/features/auth/permissions/permissions";
+
 import {
     DashboardStats,
     QuickActions,
@@ -8,6 +11,14 @@ import {
 } from "../components";
 
 function DashboardPage() {
+    const { can, permissions } = usePermission();
+
+    console.log("Permissions:", permissions);
+    console.log(
+        "Can create student:",
+        can(PERMISSIONS.STUDENT_CREATE)
+    );
+
     return (
         <>
             <DashboardStats />
