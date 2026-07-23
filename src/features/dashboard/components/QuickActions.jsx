@@ -7,6 +7,8 @@ import {
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
+import PermissionGuard from "@/features/auth/components/PermissionGuard";
+import { PERMISSIONS } from "@/features/auth/permissions/permissions";
 
 function QuickActions() {
     const navigate = useNavigate();
@@ -23,36 +25,17 @@ function QuickActions() {
                 </Typography>
 
                 <Stack spacing={2}>
-                    <Button
-                        variant="contained"
-                        fullWidth
-                        onClick={() => navigate("/students")}
-                    >
-                        Add Student
-                    </Button>
+                    <PermissionGuard permission={PERMISSIONS.STUDENT_CREATE}>
+                        <Button fullWidth>Add Student</Button>
+                    </PermissionGuard>
 
-                    <Button
-                        variant="contained"
-                        fullWidth
-                        color="success"
-                        onClick={() => navigate("/teachers")}
-                    >
-                        Add Teacher
-                    </Button>
+                    <PermissionGuard permission={PERMISSIONS.TEACHER_CREATE}>
+                        <Button fullWidth>Add Teacher</Button>
+                    </PermissionGuard>
 
-                    <Button
-                        variant="outlined"
-                        fullWidth
-                    >
-                        Take Attendance
-                    </Button>
-
-                    <Button
-                        variant="outlined"
-                        fullWidth
-                    >
-                        Create Notice
-                    </Button>
+                    <PermissionGuard permission={PERMISSIONS.NOTICE_CREATE}>
+                        <Button fullWidth>Create Notice</Button>
+                    </PermissionGuard>
                 </Stack>
             </CardContent>
         </Card>
