@@ -8,7 +8,11 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import PermissionGuard from "@/features/auth/components/PermissionGuard";
-import { PERMISSIONS } from "@/features/auth/permissions/permissions";
+import {
+    STUDENT_PERMISSIONS,
+    TEACHER_PERMISSIONS,
+    NOTICE_PERMISSIONS
+} from "@/features/auth/permissions";
 
 function QuickActions() {
     const navigate = useNavigate();
@@ -25,15 +29,15 @@ function QuickActions() {
                 </Typography>
 
                 <Stack spacing={2}>
-                    <PermissionGuard permission={PERMISSIONS.STUDENT_CREATE}>
+                    <PermissionGuard permission={STUDENT_PERMISSIONS.CREATE}>
                         <Button fullWidth>Add Student</Button>
                     </PermissionGuard>
 
-                    <PermissionGuard permission={PERMISSIONS.TEACHER_CREATE}>
+                    <PermissionGuard permission={TEACHER_PERMISSIONS.CREATE}>
                         <Button fullWidth>Add Teacher</Button>
                     </PermissionGuard>
 
-                    <PermissionGuard permission={PERMISSIONS.NOTICE_CREATE}>
+                    <PermissionGuard permission={NOTICE_PERMISSIONS.CREATE}>
                         <Button fullWidth>Create Notice</Button>
                     </PermissionGuard>
                 </Stack>
