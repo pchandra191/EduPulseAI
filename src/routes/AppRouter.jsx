@@ -8,8 +8,11 @@ import ProtectedRoute from "@/routes/ProtectedRoute";
 
 import PermissionGuard from "@/features/auth/components/PermissionGuard";
 import { ROUTES } from "@/app/constants";
-import { SETTINGS_PERMISSIONS } from "@/features/auth/permissions";
+import { SETTINGS_PERMISSIONS, USER_PERMISSIONS } from "@/features/auth/permissions";
 import AccessControlPage from "@/features/access-control/pages/AccessControlPage";
+import UserListPage from "@/features/users/pages/UserListPage";
+import UserCreatePage from "@/features/users/pages/UserCreatePage";
+import UserEditPage from "@/features/users/pages/UserEditPage";
 
 function AppRouter() {
     return (
@@ -37,6 +40,33 @@ function AppRouter() {
                                     permission={SETTINGS_PERMISSIONS.EDIT}
                                 >
                                     <AccessControlPage />
+                                </PermissionGuard>
+                            }
+                        />
+
+                        <Route
+                            path={ROUTES.USERS}
+                            element={
+                                <PermissionGuard permission={USER_PERMISSIONS.VIEW}>
+                                    <UserListPage />
+                                </PermissionGuard>
+                            }
+                        />
+
+                        <Route
+                            path={ROUTES.USERS_CREATE}
+                            element={
+                                <PermissionGuard permission={USER_PERMISSIONS.CREATE}>
+                                    <UserCreatePage />
+                                </PermissionGuard>
+                            }
+                        />
+
+                        <Route
+                            path={ROUTES.USERS_EDIT}
+                            element={
+                                <PermissionGuard permission={USER_PERMISSIONS.EDIT}>
+                                    <UserEditPage />
                                 </PermissionGuard>
                             }
                         />

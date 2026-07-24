@@ -4,19 +4,36 @@ import {
     ListItemText,
 } from "@mui/material";
 
+import PermissionGuard from "@/features/auth/components/PermissionGuard";
+
 function SidebarItem({
     title,
     icon: Icon,
+    permission,
 }) {
-    return (
-        <ListItemButton>
-
+    const content = (
+        <>
             <ListItemIcon>
                 <Icon />
             </ListItemIcon>
 
             <ListItemText primary={title} />
+        </>
+    );
 
+    if (permission) {
+        return (
+            <PermissionGuard permission={permission} fallback={null}>
+                <ListItemButton>
+                    {content}
+                </ListItemButton>
+            </PermissionGuard>
+        );
+    }
+
+    return (
+        <ListItemButton>
+            {content}
         </ListItemButton>
     );
 }

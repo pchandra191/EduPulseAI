@@ -1,6 +1,7 @@
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import SchoolIcon from "@mui/icons-material/School";
 import GroupsIcon from "@mui/icons-material/Groups";
+import PeopleIcon from "@mui/icons-material/People";
 
 export const menuItems = [
     {
@@ -32,6 +33,17 @@ export const menuItems = [
         title: "Teachers",
         icon: GroupsIcon,
         path: "/teachers",
+        roles: [
+            "SUPER_ADMIN",
+            "INSTITUTE_ADMIN",
+        ],
+    },
+    {
+        id: "users",
+        title: "Users",
+        icon: PeopleIcon,
+        path: "/users",
+        permission: "user.view",
         roles: [
             "SUPER_ADMIN",
             "INSTITUTE_ADMIN",

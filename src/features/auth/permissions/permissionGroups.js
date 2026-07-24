@@ -4,6 +4,7 @@ import { TEACHER_PERMISSIONS } from "./teacher.permissions";
 import { HOMEWORK_PERMISSIONS } from "./homework.permissions";
 import { NOTICE_PERMISSIONS } from "./notice.permissions";
 import { SETTINGS_PERMISSIONS } from "./settings.permissions";
+import { USER_PERMISSIONS } from "./user.permissions";
 
 export const PERMISSION_GROUPS = [
     {
@@ -69,6 +70,43 @@ export const PERMISSION_GROUPS = [
                 key: TEACHER_PERMISSIONS.DELETE,
                 label: "Delete",
                 description: "Allows deleting teachers",
+            },
+        ],
+    },
+    {
+        id: "users",
+        title: "Users",
+        icon: "People",
+        permissions: [
+            {
+                key: USER_PERMISSIONS.VIEW,
+                label: "View",
+                description: "Allows viewing users",
+            },
+            {
+                key: USER_PERMISSIONS.CREATE,
+                label: "Create",
+                description: "Allows creating users",
+            },
+            {
+                key: USER_PERMISSIONS.EDIT,
+                label: "Edit",
+                description: "Allows editing users",
+            },
+            {
+                key: USER_PERMISSIONS.STATUS,
+                label: "Change Status",
+                description: "Allows changing user status",
+            },
+            {
+                key: USER_PERMISSIONS.RESET_PASSWORD,
+                label: "Reset Password",
+                description: "Allows resetting user password",
+            },
+            {
+                key: USER_PERMISSIONS.MANAGE_PERMISSIONS,
+                label: "Manage Permissions",
+                description: "Allows managing user permissions",
             },
         ],
     },
